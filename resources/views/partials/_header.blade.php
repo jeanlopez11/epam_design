@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     
     @if ($title)
-    <title>{{ $title }} - Yeti</title>
+    <title>{{ $title }} - Epam</title>
     @else
-    <title>Yeti</title>
+    <title>Epam</title>
     @endif
     
     <!-- Generics -->
