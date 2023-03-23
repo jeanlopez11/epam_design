@@ -2,7 +2,7 @@
 <aside id="customizer" class="sidebar sidebar_customizer">
 
     <!-- Togglers -->
-    <div class="toggler-wrapper">
+    <div class="toggler-wrapper -mt-40">
         <div>
             <button class="toggler" data-toggle="customizer">
                 <span class="la la-gear animate-spin-slow"></span>
@@ -16,7 +16,7 @@
     <!-- Theme Customizer -->
     <div class="flex items-center justify-between h-20 p-4">
         <div>
-            <h2>Theme Customizer</h2>
+            <h2>{{ __('Customize Themes') }}</h2>
             <p>Customize & Preview</p>
         </div>
         <button class="close text-2xl leading-none hover:text-primary la la-times" data-toggle="customizer"></button>

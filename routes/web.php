@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsuariosContratos\DetalleUsuariosContratosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,7 @@ use App\Http\Controllers\ProfileController;
 
 // Dahboard
 Route::get('/', function () {
-    return view('index');
-    // return redirect()->route('login');
+    return redirect()->route('detalle_contratos.usuarios.edit');
 });
 
 # AUTENTICACION BREEZE
@@ -38,84 +38,98 @@ Route::group(["middleware" => ['verified', 'auth']], function () {
     })->name('servicios.consultas.altura');
 });
 
+#USUARIOS CONTRATOS
+Route::group(["middleware" => ['verified', 'auth']], function () {
+    Route::prefix('detalle_contratos')->group(function () {
+        Route::get('/usuarios', [DetalleUsuariosContratosController::class, 'index'])->name('detalle_contratos.usuarios.edit');
+    });
+});
 
+
+
+###############################################################################################
+//ROUTES DE LOS MODELOS PRECARGADOS DE YETI
+Route::get('/yeti', function () {
+    return view('yeti.index');
+    // return redirect()->route('login');
+});
 // UI
 Route::prefix('ui')->group(function () {
     // Form
     Route::prefix('form')->group(function () {
         Route::get('/components', function () {
-            return view('form-components');
+            return view('yeti.form-components');
         });
         Route::get('/input-groups', function () {
-            return view('form-input-groups');
+            return view('yeti.form-input-groups');
         });
         Route::get('/layout', function () {
-            return view('form-layout');
+            return view('yeti.form-layout');
         });
         Route::get('/validations', function () {
-            return view('form-validations');
+            return view('yeti.form-validations');
         });
         Route::get('/wizards', function () {
-            return view('form-wizards');
+            return view('yeti.form-wizards');
         });
     });
 
     // Components
     Route::prefix('components')->group(function () {
         Route::get('/alerts', function () {
-            return view('components-alerts');
+            return view('yeti.components-alerts');
         });
         Route::get('/avatars', function () {
-            return view('components-avatars');
+            return view('yeti.components-avatars');
         });
         Route::get('/badges', function () {
-            return view('components-badges');
+            return view('yeti.components-badges');
         });
         Route::get('/buttons', function () {
-            return view('components-buttons');
+            return view('yeti.components-buttons');
         });
         Route::get('/cards', function () {
-            return view('components-cards');
+            return view('yeti.components-cards');
         });
         Route::get('/collapse', function () {
-            return view('components-collapse');
+            return view('yeti.components-collapse');
         });
         Route::get('/colors', function () {
-            return view('components-colors');
+            return view('yeti.components-colors');
         });
         Route::get('/dropdowns', function () {
-            return view('components-dropdowns');
+            return view('yeti.components-dropdowns');
         });
         Route::get('/modal', function () {
-            return view('components-modal');
+            return view('yeti.components-modal');
         });
         Route::get('/popovers-tooltips', function () {
-            return view('components-popovers-tooltips');
+            return view('yeti.components-popovers-tooltips');
         });
         Route::get('/tables', function () {
-            return view('components-tables');
+            return view('yeti.components-tables');
         });
         Route::get('/tabs', function () {
-            return view('components-tabs');
+            return view('yeti.components-tabs');
         });
         Route::get('/toasts', function () {
-            return view('components-toasts');
+            return view('yeti.components-toasts');
         });
     });
 
     // Extras
     Route::prefix('extras')->group(function () {
         Route::get('/carousel', function () {
-            return view('extras-carousel');
+            return view('yeti.extras-carousel');
         });
         Route::get('/charts', function () {
-            return view('extras-charts');
+            return view('yeti.extras-charts');
         });
         Route::get('/editors', function () {
-            return view('extras-editors');
+            return view('yeti.extras-editors');
         });
         Route::get('/sortable', function () {
-            return view('extras-sortable');
+            return view('yeti.extras-sortable');
         });
     });
 });
@@ -123,16 +137,16 @@ Route::prefix('ui')->group(function () {
 // Applications
 Route::prefix('applications')->group(function () {
     Route::get('/chat', function () {
-        return view('applications-chat');
+        return view('yeti.applications-chat');
     });
     Route::get('/media-library', function () {
-        return view('applications-media-library');
+        return view('yeti.applications-media-library');
     });
     Route::get('/point-of-sale', function () {
-        return view('applications-point-of-sale');
+        return view('yeti.applications-point-of-sale');
     });
     Route::get('/to-do', function () {
-        return view('applications-to-do');
+        return view('yeti.applications-to-do');
     });
 });
 
@@ -140,62 +154,62 @@ Route::prefix('applications')->group(function () {
 Route::prefix('pages')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::get('/login', function () {
-            return view('auth-login');
+            return view('yeti.auth-login');
         });
         Route::get('/forgot-password', function () {
-            return view('auth-forgot-password');
+            return view('yeti.auth-forgot-password');
         });
         Route::get('/register', function () {
-            return view('auth-register');
+            return view('yeti.auth-register');
         });
     });
     Route::prefix('blog')->group(function () {
         Route::get('/list', function () {
-            return view('blog-list');
+            return view('yeti.blog-list');
         });
         Route::get('/list-card-rows', function () {
-            return view('blog-list-card-rows');
+            return view('yeti.blog-list-card-rows');
         });
         Route::get('/list-card-columns', function () {
-            return view('blog-list-card-columns');
+            return view('yeti.blog-list-card-columns');
         });
         Route::get('/add', function () {
-            return view('blog-add');
+            return view('yeti.blog-add');
         });
     });
     Route::prefix('errors')->group(function () {
         Route::get('/403', function () {
-            return view('errors-403');
+            return view('yeti.errors-403');
         });
         Route::get('/404', function () {
-            return view('errors-404');
+            return view('yeti.errors-404');
         });
         Route::get('/500', function () {
-            return view('errors-500');
+            return view('yeti.errors-500');
         });
         Route::get('/under-maintenance', function () {
-            return view('errors-under-maintenance');
+            return view('yeti.errors-under-maintenance');
         });
     });
     Route::get('/pricing', function () {
-        return view('pages-pricing');
+        return view('yeti.pages-pricing');
     });
     Route::get('/faqs-layout-1', function () {
-        return view('pages-faqs-layout-1');
+        return view('yeti.pages-faqs-layout-1');
     });
     Route::get('/faqs-layout-2', function () {
-        return view('pages-faqs-layout-2');
+        return view('yeti.pages-faqs-layout-2');
     });
     Route::get('/invoice', function () {
-        return view('pages-invoice');
+        return view('yeti.pages-invoice');
     });
 });
 
 // Blank
 Route::get('/blank', function () {
-    return view('blank');
+    return view('yeti.blank');
 });
 
 
 #RUTAS DE AUTENTICACIÓN BREEZE(SIN INSTALAR) LOGIN, REGISTRO, VALADACIONES CORREO Y CONTRASEÑA
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -2,12 +2,19 @@
 <header class="top-bar">
 
     <!-- Menu Toggler -->
-    <button class="menu-toggler la la-bars" data-toggle="menu"></button>
+    <button class="menu-toggler la la-bars " data-toggle="menu">
+    </button>
+    <button class="menu-toggler -ml-2" data-toggle="menu">
+        {{-- <button class="menu-toggler la la-bars" data-toggle="menu"> --}}
+        <x-application-logo class="block h-9 w-auto fill-current text-gray-800">
+            <i class="fa-solid fa-bars"></i>
+        </x-application-logo>
+    </button>
 
     <!-- Brand -->
     <span class="brand">
         <a href="{{ route('dashboard') }}">
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            <x-application-letter class="block h-9 w-auto fill-current text-gray-800 hidden sm:block" />
         </a>
     </span>
 
@@ -15,8 +22,8 @@
     <form class="hidden md:block ltr:ml-10 rtl:mr-10">
         <label class="form-control-addon-within rounded-full">
             <input class="form-control border-none" placeholder="Search">
-            <button
-                class="text-gray-300 dark:text-gray-700 text-xl leading-none la la-search ltr:mr-4 rtl:ml-4"></button>
+            <button class="text-gray-300 dark:text-gray-700 text-xl leading-none la la-search ltr:mr-4 rtl:ml-4">
+            </button>
         </label>
     </form>
 
@@ -73,8 +80,9 @@
             </button>
             <div class="custom-dropdown-menu">
                 <div class="flex items-center px-5 py-2">
-                    <h5 class="mb-0 uppercase">{{__('Notifications')}}</h5>
-                    <button class="btn btn_outlined btn_warning uppercase ltr:ml-auto rtl:mr-auto">{{__('Clear All')}}</button>
+                    <h5 class="mb-0 uppercase">{{ __('Notifications') }}</h5>
+                    <button
+                        class="btn btn_outlined btn_warning uppercase ltr:ml-auto rtl:mr-auto">{{ __('Clear All') }}</button>
                 </div>
                 <hr>
                 <div class="p-5 hover:bg-primary hover:bg-opacity-5">
@@ -97,31 +105,32 @@
             <div class="custom-dropdown-menu w-64">
                 <div class="p-5">
                     <h5 class="uppercase">John Doe</h5>
-                    <p>{{__('User')}}</p>
+                    <p>{{ __('User') }}</p>
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href={{route('profile.edit')}} class="flex items-center text-normal hover:text-primary">
+                    <a href={{ route('profile.edit') }} class="flex items-center text-normal hover:text-primary">
                         <span class="la la-user-circle text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
-                        {{__('Profile Information')}}
+                        {{ __('Profile Information') }}
                     </a>
                     <a href="#no-link" class="flex items-center text-normal hover:text-primary mt-5">
                         <span class="la la-key text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
-                        {{__('Change Password')}}
+                        {{ __('Change Password') }}
                     </a>
                 </div>
                 <hr>
                 <div class="p-5 bg-gray-100">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <x-dropdown-link class="la la-power-off text-2xl leading-none ltr:mr-2 rtl:ml-2" :href="route('logout')"
-                                onclick="event.preventDefault();
+                        <x-dropdown-link class="la la-power-off text-2xl leading-none ltr:mr-2 rtl:ml-2"
+                            :href="route('logout')"
+                            onclick="event.preventDefault();
                                             this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </x-dropdown-link>
 
                     </form>
-                    
+
                 </div>
             </div>
         </div>
@@ -150,7 +159,8 @@
             <span class="icon la la-file-alt"></span>
             <span class="title"> {{ __('Pages') }}</span>
         </a>
-        <a href="#no-link" class="link" data-target="[data-menu=ui]" data-toggle="tooltip-menu" data-tippy-content="UI">
+        <a href="#no-link" class="link" data-target="[data-menu=ui]" data-toggle="tooltip-menu"
+            data-tippy-content="UI">
             <span class="icon la la-cube"></span>
             <span class="title"> {{ __('UI') }}</span>
         </a>
