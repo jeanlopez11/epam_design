@@ -32,10 +32,10 @@ class RegisteredUserController extends Controller
                 DB::beginTransaction();
                 $request->validate([
                     'cedula' => ['required','numeric','digits:10','unique:'.User::class],
-                    'name' => ['required', 'string', 'max:125', 'min:5'],
-                    'last_name' => ['required', 'string', 'max:125', 'min:10'],
+                    'name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:125', 'min:5'],
+                    'last_name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:125', 'min:7'],
                     'phone_number' => ['required', 'numeric','digits:10'],
-                    'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+                    'email' => ['required', 'email:rfc,dns', 'unique:'.User::class],
                     'password' => ['required', 'confirmed', Rules\Password::defaults()],
                 ]);
         

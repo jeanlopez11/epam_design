@@ -29,6 +29,8 @@ class ProfileController extends Controller
 
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+
+
         $request->validate([
             'name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:125', 'min:5'],
             'last_name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'max:125', 'min:7'],
@@ -44,6 +46,9 @@ class ProfileController extends Controller
         ]);
         
         if ($request->user()->isDirty('email')) {
+            $request->validate([
+                'email' => ['required', 'email:rfc,dns', 'unique:'.User::class],
+            ]);
             $request->user()->email_verified_at = null;
         }
 
