@@ -1,4 +1,8 @@
 {
+    "Names": "Nombres",
+    "User": "Usuario",
+    "Clear All": "Limpiar todo",
+    "Notifications": "Notificaciones",
     "Account": "Cuenta",
     "Value": "Valor",
     "Contract Code": "Código Contrato",
@@ -62,6 +66,7 @@
     "Register": "Registrarse",
     "Remember me": "Mantener sesión activa",
     "Resend Verification Email": "Reenviar correo de verificación",
+    "Change Password": "Cambiar contraseña",
     "Reset Password": "Restablecer contraseña",
     "Reset Password Notification": "Notificación de restablecimiento de contraseña",
     "results": "resultados",

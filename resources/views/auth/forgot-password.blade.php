@@ -1,11 +1,13 @@
-<x-layouts.guest>
-    <div class="mb-4 text-sm text-gray-600">
+@extends('layouts.blank', ['title' => __('Register')])
+
+@section('body')
+    <div class="mb-4 text-sm text-gray-600 w-64">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
 
@@ -29,4 +31,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-layouts.guest>
+@endsection

@@ -1,3 +1,4 @@
+console.log('probando');
 export function valideKeyLetter(evt){   
     // code is the decimal ASCII representation of the pressed key.
     var code = (evt.which) ? evt.which : evt.keyCode;

@@ -1,4 +1,5 @@
 <x-guest-layout>
+    {{-- esto se utiliza cuando se desea volver a pedir la contraseña en un area critica --}}
     <div class="mb-4 text-sm text-gray-600">
         {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
     </div>

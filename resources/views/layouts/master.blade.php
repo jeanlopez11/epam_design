@@ -11,9 +11,7 @@
     @include('partials._navigation')
 
     <!-- Workspace -->
-    <main class="workspace @hasSection('sidebar')
-workspace_with-sidebar
-@endif {{ $workspaceClasses ?? '' }}">
+    <main class="workspace @hasSection('sidebar')workspace_with-sidebar @endif {{ $workspaceClasses ?? '' }}">
         {{-- {{ $slot }} --}}
         {{-- workspace es el slot, el espacio de trabajo donde estará toda la logica --}}
         @yield('workspace')
@@ -37,9 +35,11 @@ workspace_with-sidebar
     @endif
     <!-- Scripts -->
     <script src="{{ asset('build/js/vendor.js') }}"></script>
+    @vite(['resources/js/validations.js'])
 
     @yield('scripts')
     <script src="{{ asset('build/js/script.js') }}"></script>
+    
     @livewireScripts
 </body>
 

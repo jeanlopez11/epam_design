@@ -3,6 +3,7 @@
 <body>
 
     @include('partials._customizer')
+    @livewireStyles
 
     @yield('body')
 
@@ -12,6 +13,8 @@
     @yield('scripts')
     
     <script src="{{ asset('build/js/script.js') }}"></script>
+    @vite(['resources/js/validations.js'])
+    @livewireScripts
 
 </body>
 

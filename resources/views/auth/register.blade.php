@@ -1,77 +1,104 @@
-<x-layouts.guest>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.blank', ['title' => __('Register')])
 
-        <!-- Cedula/RUC -->
-        <div>
-            <x-input-label for="cedula" :value="__('Cedula')" />
-            <x-text-input onkeypress="return Validations.valideKeyLetter(event)" id="cedula" maxlength="10" minlength="10" class="block mt-1 w-full" type="text" name="cedula" :value="old('cedula')" required
-                autofocus autocomplete="cedula" />
-            <x-input-error :messages="$errors->get('cedula')" class="mt-2" />
+@section('body')
+    <section class="top-bar">
+
+        <!-- Brand -->
+        <span class="brand">EPAM</span>
+
+        <nav class="flex items-center ltr:ml-auto rtl:mr-auto">
+
+            <!-- Dark Mode -->
+            <label class="switch switch_outlined" data-toggle="tooltip" data-tippy-content="Toggle Dark Mode">
+                <input id="darkModeToggler" type="checkbox">
+                <span></span>
+            </label>
+
+            <!-- Fullscreen -->
+            <button id="fullScreenToggler"
+                class="hidden lg:inline-block ltr:ml-5 rtl:mr-5 text-2xl leading-none la la-expand-arrows-alt"
+                data-toggle="tooltip" data-tippy-content="Fullscreen"></button>
+
+            <!-- Register -->
+            <a href="{{ route('login') }}" class="btn btn_primary uppercase ltr:ml-5 rtl:mr-5">{{ __('Login') }}</a>
+        </nav>
+    </section>
+
+    <div class="container flex items-center justify-center mt-16 py-10">
+        <div class="w-full md:w-1/2 xl:w-1/3">
+            {{-- <a href="{{ route('dashboard') }}">
+                <x-application-logo-letter />
+            </a> --}}
+
+            <form class="card mt-2 p-5 md:p-10" method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="-mt-4">
+                    <label class="label block mb-2" for="cedula">{{ __('Cedula') }}</label>
+                    <x-text-input onkeypress="return Validations.valideKeyLetter(event)" id="cedula" name="cedula"
+                        type="text" class="form-control" :value="old('cedula')" required autofocus autocomplete="cedula" />
+                    <x-input-error id="cedula" class="block mt-2 invalid-feedback" :messages="$errors->get('cedula')" />
+                </div>
+
+                <div class="mt-2">
+                    <label class="label block mb-2" for="name">{{ __('First Name') }}</label>
+                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="name" name="name"
+                        type="text" class="form-control" :value="old('name')" required autofocus autocomplete="name" />
+                    <x-input-error id="name" class="block mt-2 invalid-feedback" :messages="$errors->get('name')" />
+                </div>
+
+                <div class="mt-2">
+                    <label class="label block mb-2" for="last_name">{{ __('Last Name') }}</label>
+                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="last_name" name="last_name"
+                        type="text" class="form-control" :value="old('last_name')" required autofocus autocomplete="last_name" />
+                    <x-input-error id="last_name" class="block mt-2 invalid-feedback" :messages="$errors->get('last_name')" />
+                </div>
+                <div class="mt-2">
+                    <label class="label block mb-2" for="email">{{ __('Email') }}</label>
+                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="email" name="email"
+                        type="email" class="form-control" :value="old('email')" required autofocus autocomplete="email" />
+                    <x-input-error id="email" class="block mt-2 invalid-feedback" :messages="$errors->get('email')" />
+                </div>
+                <div class="mt-2">
+                    <label class="label block mb-2" for="phone_number">{{ __('Phone Number') }}</label>
+                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="phone_number"
+                        name="phone_number" type="text" class="form-control" :value="old('phone_number')" required autofocus
+                        autocomplete="phone_number" />
+                    <x-input-error id="phone_number" class="block mt-2 invalid-feedback" :messages="$errors->get('phone_number')" />
+                </div>
+
+                <div class="mt-2">
+                    <label class="label block mb-2" for="password">{{ __('Password') }}</label>
+                    <label class="form-control-addon-within">
+                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                            autocomplete="new-password" class="form-control border-none" value="" />
+                        <span class="flex items-center ltr:pr-4 rtl:pl-4">
+                            <button type="button" class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
+                                data-toggle="password-visibility">
+                            </button>
+                        </span>
+                    </label>
+                    <x-input-error id="password" :messages="$errors->get('password')" class="block mt-2 invalid-feedback" />
+                </div>
+                <!-- Confirm Password -->
+                <div class="mt-2">
+                    <label class="label block mb-2" for="password_confirmation">{{ __('Confirm Password') }}</label>
+                    <label class="form-control-addon-within">
+                        <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                            name="password_confirmation" required autocomplete="new-password"
+                            class="form-control border-none" value="" />
+                        <span class="flex items-center ltr:pr-4 rtl:pl-4">
+                            <button type="button" class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
+                                data-toggle="password-visibility">
+                            </button>
+                        </span>
+                    </label>
+                    <x-input-error id="password_confirmation" :messages="$errors->get('password_confirmation')" class="block mt-2 invalid-feedback" />
+                </div>
+
+                <div class="flex items-center mt-5">
+                    <button class="btn btn_primary ltr:ml-auto rtl:mr-auto uppercase mx-1">{{ __('Register') }}</button>
+                </div>
+            </form>
         </div>
-
-
-        <!-- First Name -->
-        <div>
-            <x-input-label for="name" :value="__('First Name')" />
-            <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="name" minlength="4" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- Last Name -->
-        <div>
-            <x-input-label for="last_name" :value="__('Last Name')" />
-            <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="last_name" minlength="6" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')"
-                required autofocus autocomplete="last_name" />
-            <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
-        </div>
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email"  class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        {{-- Phone Number --}}
-        <div class="mt-4">
-            <x-input-label for="phone_number" :value="__('Phone Number')" />
-            <x-text-input onkeypress="return Validations.valideKeyLetter(event)" id="phone_number" class="block mt-1 w-full"
-                type="tel" name="phone_number" :value="old('phone_number')" required autocomplete="phone_number"
-                maxlength='10' minlength='10' />
-            <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button onclick="return Validations.validateEmail('email')" class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-layouts.guest>
+    </div>
+@endsection

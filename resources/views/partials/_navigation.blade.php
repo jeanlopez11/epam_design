@@ -69,8 +69,8 @@
             </button>
             <div class="custom-dropdown-menu">
                 <div class="flex items-center px-5 py-2">
-                    <h5 class="mb-0 uppercase">Notifications</h5>
-                    <button class="btn btn_outlined btn_warning uppercase ltr:ml-auto rtl:mr-auto">Clear All</button>
+                    <h5 class="mb-0 uppercase">{{__('Notifications')}}</h5>
+                    <button class="btn btn_outlined btn_warning uppercase ltr:ml-auto rtl:mr-auto">{{__('Clear All')}}</button>
                 </div>
                 <hr>
                 <div class="p-5 hover:bg-primary hover:bg-opacity-5">
@@ -81,21 +81,6 @@
                     <small>Today</small>
                 </div>
                 <hr>
-                <div class="p-5 hover:bg-primary hover:bg-opacity-5">
-                    <a href="#no-link">
-                        <h6 class="uppercase">Heading Two</h6>
-                    </a>
-                    <p>Mollitia sequi dolor architecto aut deserunt.</p>
-                    <small>Yesterday</small>
-                </div>
-                <hr>
-                <div class="p-5 hover:bg-primary hover:bg-opacity-5">
-                    <a href="#no-link">
-                        <h6 class="uppercase">Heading Three</h6>
-                    </a>
-                    <p>Nobis reprehenderit sed quos deserunt</p>
-                    <small>Last Week</small>
-                </div>
             </div>
         </div>
 
@@ -108,25 +93,31 @@
             <div class="custom-dropdown-menu w-64">
                 <div class="p-5">
                     <h5 class="uppercase">John Doe</h5>
-                    <p>Editor</p>
+                    <p>{{__('User')}}</p>
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href="#no-link" class="flex items-center text-normal hover:text-primary">
+                    <a href={{route('profile.edit')}} class="flex items-center text-normal hover:text-primary">
                         <span class="la la-user-circle text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
-                        View Profile
+                        {{__('Profile Information')}}
                     </a>
                     <a href="#no-link" class="flex items-center text-normal hover:text-primary mt-5">
                         <span class="la la-key text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
-                        Change Password
+                        {{__('Change Password')}}
                     </a>
                 </div>
                 <hr>
-                <div class="p-5">
-                    <a href="#no-link" class="flex items-center text-normal hover:text-primary">
-                        <span class="la la-power-off text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
-                        Logout
-                    </a>
+                <div class="p-5 bg-gray-100">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link class="la la-power-off text-2xl leading-none ltr:mr-2 rtl:ml-2" :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+
+                    </form>
+                    
                 </div>
             </div>
         </div>

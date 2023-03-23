@@ -17,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 // Dahboard
 Route::get('/', function () {
     return view('index');
+    // return redirect()->route('login');
 });
 
 # AUTENTICACION BREEZE
