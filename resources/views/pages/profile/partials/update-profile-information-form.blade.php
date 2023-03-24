@@ -16,39 +16,33 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-        
-        {{-- <div>
-            <x-input-label for="cedula" :value="__('Cedula')" />
-            <x-text-input onkeypress="return Validations.valideKeyLetter(event)" id="cedula" name="cedula" type="text" class="mt-1 block w-full" :value="old('cedula', $user->cedula)" required autofocus autocomplete="cedula" disabled/>
-            <x-input-error class="mt-2" :messages="$errors->get('cedula')" />
-        </div> --}}
-        
+               
         <div class="mt-5">
             <label class="label block mb-2" for="cedula">{{__('Cedula')}}</label>
-            <x-text-input onkeypress="return Validations.valideKeyLetter(event)" id="cedula" name="cedula" type="text" class="form-control" :value="old('cedula', $user->cedula)" required autofocus autocomplete="cedula" disabled/>
+            <x-text-input onkeypress="return valideKeyLetter(event)" id="cedula" name="cedula" type="text" class="form-control" :value="old('cedula', $user->cedula)" required autofocus autocomplete="cedula" disabled/>
             <x-input-error id="cedula" class="block mt-2 invalid-feedback" :messages="$errors->get('cedula')" />
         </div>
         
         <div class="mt-5">
             <label class="label block mb-2" for="name">{{__('First Name')}}</label>
-            <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input onkeypress="return validateOnlyLetter(event)" id="name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error id="name" class="block mt-2 invalid-feedback" :messages="$errors->get('name')" />
         </div>
 
         <div class="mt-5">
             <label class="label block mb-2" for="last_name">{{__('Last Name')}}</label>
-            <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="last_name" name="last_name" type="text" class="form-control" :value="old('last_name', $user->last_name)" required autofocus autocomplete="last_name" />
+            <x-text-input onkeypress="return validateOnlyLetter(event)" id="last_name" name="last_name" type="text" class="form-control" :value="old('last_name', $user->last_name)" required autofocus autocomplete="last_name" />
             <x-input-error id="last_name" class="block mt-2 invalid-feedback" :messages="$errors->get('last_name')" />
         </div>
         <div class="mt-5">
             <label class="label block mb-2" for="phone_number">{{__('Phone Number')}}</label>
-            <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="phone_number" name="phone_number" type="text" class="form-control" :value="old('phone_number', $user->phone_number)" required autofocus autocomplete="phone_number" />
+            <x-text-input onkeypress="return valideKeyLetter(event)" id="phone_number" name="phone_number" type="text" class="form-control" :value="old('phone_number', $user->phone_number)" required autofocus autocomplete="phone_number" />
             <x-input-error id="phone_number" class="block mt-2 invalid-feedback" :messages="$errors->get('phone_number')" />
         </div>
 
         <div>
             <label class="label block mb-2" for="email">{{__('Email')}}</label>
-            <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autofocus autocomplete="email" />
+            <x-text-input  id="email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autofocus autocomplete="email" />
             <x-input-error id="email" class="block mt-2 invalid-feedback" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -71,7 +65,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button onclick="return Validations.validateEmail('email')">{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

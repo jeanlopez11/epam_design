@@ -13,8 +13,8 @@
 
     <!-- Brand -->
     <span class="brand">
-        <a href="{{ route('dashboard') }}">
-            <x-application-letter class="block h-9 w-auto fill-current text-gray-800 hidden sm:block" />
+        <a href="{{ route('detalle_contratos.usuarios.edit') }}">
+            <x-application-letter class="h-9 w-auto fill-current text-gray-800 hidden sm:block" />
         </a>
     </span>
 
@@ -100,11 +100,17 @@
         <div class="dropdown">
             <button class="flex items-center ltr:ml-4 rtl:mr-4" data-toggle="custom-dropdown-menu"
                 data-tippy-arrow="true" data-tippy-placement="bottom-end">
-                <span class="avatar">JD</span>
+                <span class="avatar">@auth
+                        {{ auth()->user()->name[0]. auth()->user()->last_name[0] }}
+                    @endauth
+                </span>
             </button>
             <div class="custom-dropdown-menu w-64">
                 <div class="p-5">
-                    <h5 class="uppercase">John Doe</h5>
+                    <h5 class="uppercase">@auth
+                            {{ auth()->user()->name }}
+                        @endauth
+                    </h5>
                     <p>{{ __('User') }}</p>
                 </div>
                 <hr>
@@ -144,13 +150,17 @@
             <a href="{{ url('/') }}" class="flex items-center mx-8 mt-8">
                 <span class="avatar w-16 h-16">JD</span>
                 <div class="ltr:ml-4 rtl:mr-4 ltr:text-left rtl:text-right">
-                    <h5>John Doe</h5>
+                    <h5>@auth
+                            {{ auth()->user()->name }}
+                        @endauth
+                    </h5>
                     <p class="mt-2">Editor</p>
                 </div>
             </a>
             <hr class="mx-8 my-4">
         </div>
-        <a href="{{ route('dashboard') }}" class="link" data-toggle="tooltip-menu" data-tippy-content="Dashboard">
+        <a href="{{ route('detalle_contratos.usuarios.edit') }}" class="link" data-toggle="tooltip-menu"
+            data-tippy-content="Dashboard">
             <span class="icon la la-laptop"></span>
             <span class="title"> {{ __('Dashboard') }}</span>
         </a>

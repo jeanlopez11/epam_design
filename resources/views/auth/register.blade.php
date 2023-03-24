@@ -41,26 +41,26 @@
 
                 <div class="mt-2">
                     <label class="label block mb-2" for="name">{{ __('First Name') }}</label>
-                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="name" name="name"
+                    <x-text-input onkeypress="return validateOnlyLetter(event)" id="name" name="name"
                         type="text" class="form-control" :value="old('name')" required autofocus autocomplete="name" />
                     <x-input-error id="name" class="block mt-2 invalid-feedback" :messages="$errors->get('name')" />
                 </div>
 
                 <div class="mt-2">
                     <label class="label block mb-2" for="last_name">{{ __('Last Name') }}</label>
-                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="last_name" name="last_name"
+                    <x-text-input onkeypress="return validateOnlyLetter(event)" id="last_name" name="last_name"
                         type="text" class="form-control" :value="old('last_name')" required autofocus autocomplete="last_name" />
                     <x-input-error id="last_name" class="block mt-2 invalid-feedback" :messages="$errors->get('last_name')" />
                 </div>
                 <div class="mt-2">
                     <label class="label block mb-2" for="email">{{ __('Email') }}</label>
-                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="email" name="email"
+                    <x-text-input id="email" name="email"
                         type="email" class="form-control" :value="old('email')" required autofocus autocomplete="email" />
                     <x-input-error id="email" class="block mt-2 invalid-feedback" :messages="$errors->get('email')" />
                 </div>
                 <div class="mt-2">
                     <label class="label block mb-2" for="phone_number">{{ __('Phone Number') }}</label>
-                    <x-text-input onkeypress="return Validations.validateOnlyLetter(event)" id="phone_number"
+                    <x-text-input onkeypress="return valideKeyLetter(event)" id="phone_number"
                         name="phone_number" type="text" class="form-control" :value="old('phone_number')" required autofocus
                         autocomplete="phone_number" />
                     <x-input-error id="phone_number" class="block mt-2 invalid-feedback" :messages="$errors->get('phone_number')" />
@@ -96,7 +96,9 @@
                 </div>
 
                 <div class="flex items-center mt-5">
-                    <button class="btn btn_primary ltr:ml-auto rtl:mr-auto uppercase mx-1">{{ __('Register') }}</button>
+                    <button class="btn btn_primary ltr:ml-auto rtl:mr-auto uppercase mx-1" 
+                        onclick="return Validations.validateEmail('email')">{{ __('Register') }}
+                    </button>
                 </div>
             </form>
         </div>

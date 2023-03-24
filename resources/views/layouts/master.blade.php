@@ -3,7 +3,8 @@
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-
+{{-- https://icons8.com/line-awesome AQUI SE ENCUENTRAN LOS ICONOS--}}
+{{-- https://heroicons.com/ ICONOS UTILIZADOS POR TAILWIND ||   USADO YETI \node_modules\line-awesome\dist\line-awesome https://github.com/icons8/line-awesome--}} 
 @livewireStyles
 
 <body>
