@@ -34,7 +34,7 @@
                 @csrf
                 <div class="-mt-4">
                     <label class="label block mb-2" for="cedula">{{ __('Cedula') }}</label>
-                    <x-text-input onkeypress="return Validations.valideKeyLetter(event)" id="cedula" name="cedula"
+                    <x-text-input onkeypress="return valideKeyLetter(event)" id="cedula" name="cedula"
                         type="text" class="form-control" :value="old('cedula')" required autofocus autocomplete="cedula" />
                     <x-input-error id="cedula" class="block mt-2 invalid-feedback" :messages="$errors->get('cedula')" />
                 </div>

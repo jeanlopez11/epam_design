@@ -51,7 +51,7 @@ const devOnly = {
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["resources/css/style.css", "resources/js/app.js",'resources/js/validations.js',],
+            input: ["resources/css/style.css", "resources/js/app.js",'resources/js/validations.js'],
             refresh: true,
         }),
         copy({

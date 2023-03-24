@@ -11,8 +11,8 @@ class DetalleUsuariosContratosController extends Controller
     public function index()
     {
         // $user_cedula = auth()->user()->cedula;
-        // $consultas = $this->ConsultarCuentas("1391829884001");
-        //SOLO ENVIAMOS LA DATA y forzamos para trabajar como objeto $consultas = $consultas['data'];
+        $consultas = $this->ConsultarCuentas("1391829884001");
+        echo($consultas);//SOLO ENVIAMOS LA DATA y forzamos para trabajar como objeto $consultas = $consultas['data'];
         // $consultaObjeto = json_decode(json_encode($consultas['data'], JSON_FORCE_OBJECT));
         #pendiente corregir guardar datos con la nueva base de datos
         // $this->GuardarDatos('1391829884001');
@@ -24,17 +24,17 @@ class DetalleUsuariosContratosController extends Controller
     {
         // $cedula = $this->ci;
         // $cedula = auth()->user()->cedula;
-        // $tipoConsulta = 'consultaAuxiliar';
-        // $getConsultaAuxiliar = Http::withBasicAuth('EPAM_PAGO_LINEA', 'NWRQjSMEnjY=')
-        //         ->withUrlParameters([
-        //         'endpoint' => 'https://pagos-qa.altura.services/ws-pago-linea/webresources/api',
-        //         'idEmpresa' => 'EPAM',
-        //         'usuarioCobro' => 'EXTERNO',
-        //         'identificacion' => $cedula,
-        //         'tipoConsulta' => 'consultaAuxiliar',
-        //     ])->get('/{+endpoint}/{+tipoConsulta}?idEmpresa={+idEmpresa}&usuarioCobro={+usuarioCobro}&identificacion={+identificacion}');
-        // $response = $getConsultaAuxiliar;
-        // return $response;
+        $tipoConsulta = 'consultaAuxiliar';
+        $getConsultaAuxiliar = Http::withBasicAuth('EPAM_PAGO_LINEA', 'NWRQjSMEnjY=')
+                ->withUrlParameters([
+                'endpoint' => 'https://pagos-qa.altura.services/ws-pago-linea/webresources/api',
+                'idEmpresa' => 'EPAM',
+                'usuarioCobro' => 'EXTERNO',
+                'identificacion' => $cedula,
+                'tipoConsulta' => 'consultaAuxiliar',
+            ])->get('/{+endpoint}/{+tipoConsulta}?idEmpresa={+idEmpresa}&usuarioCobro={+usuarioCobro}&identificacion={+identificacion}');
+        $response = $getConsultaAuxiliar;
+        return $response;
     }
 
     public function create()
